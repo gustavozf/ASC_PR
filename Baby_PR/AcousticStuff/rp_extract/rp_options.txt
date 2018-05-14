@@ -1,0 +1,54 @@
+;RP_EXTRACT Options file
+;for Rhythm Patterns Audio feature extraction V 0.64 and above
+;comments start with ; or %
+;sections [dirs] and [opts] are important to distinguish options
+
+[dirs]			  ;directory names
+;filenames provided via filelist to RP_EXTRACT are relative to input_basedir
+input_basedir=/home/user/collections/
+
+;output files will be created here
+output=/home/lidy/collections/newrpcode
+
+;all output files will be named starting with projectname
+projectname=test
+
+;binpath should be set to the path where helper applications like lame mpeg decoder can be found
+;if omitted, default search path will be used
+;NOTE: in the current version of rp_extract this option is not used!
+binpath=
+
+;filelistfile is a pointer to an Ascii file listing all audio files to extract, relative to input_basedir
+;use absolute path for filelistfile!
+;NOTE: is only used when optionsfile is the only argument to RP_EXTRACT
+filelistfile=/home/lidy/collections/filelist.txt
+
+
+[opts]			  ;processing options
+% what to extract/write
+extract_rp = 1;           ;extract Rhythm Patterns features
+extract_ssd = 1;          ;extract Statistical Spectrum Descriptor
+extract_tssd = 1;         ;extract temporal Statistical Spectrum Descriptor
+extract_rh = 1;           ;extract Rhythm Histogram features
+extract_trh = 1;          ;extract temporal Rhythm Histogram features
+extract_mvd = 1;          
+extract_bpm = 0;          ;extract approximate bpm peak values
+write_log = 1;            ;write what is going on to a log file
+
+% pre-processing options
+resample = 0;        % do resampling before processing: 0 = no, > 0 = resampling frequency in Hz
+
+% processing options
+skip_leadin_fadeout = 1;   % >=0  how many sample windows to skip at the beginning and the end
+step_width = 3;            % >=1  each step_width'th sample window is analyzed
+
+n_bark_bands = 24;         % 15 or 20 or 24 (for 11, 22 and 44 kHz audio respectively)
+mod_ampl_limit = 60;
+
+% enable/disable parts of feature extraction 
+spectral_masking = 0;      % [S3]
+transform_db = 1;          % [S4] advisable only to turn off when [S5] and [S6] are turned off too
+transform_phon = 1;        % [S5] if disabled, sone_transform will be disabled too
+transform_sone = 1;        % [S6] only applies if opts.transform_phon = 1
+fluctuation_strength_weighting = 1;  % [R2] Fluctuation Strength weighting curve
+blurring = 0;              % [R3] Gradient+Gauss filter
