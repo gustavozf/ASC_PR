@@ -13,8 +13,8 @@ import sys
 is_win = (sys.platform == 'win32')
 # Se n for windows...
 if not is_win:
-	dir_origem_tipo1 = '/home/gustavozf/Documentos/UEM/Projetos/Baby/base_americana/05_Predicts/audios_04/'
-	dir_original_svm = '/home/gustavozf/Documentos/UEM/Projetos/Baby/base_americana/04_Features/audios_04/'
+	dir_origem_tipo1 = '/home/gustavozf/Documentos/BabyStuff/05_Predicts/x1500/audios/'
+	dir_original_svm = '/home/gustavozf/Documentos/BabyStuff/04_Features/x1500/audios/'
 # Se n for Linux...
 else:
     dir_origem_tipo1 = 'D:/'
@@ -22,12 +22,12 @@ else:
 #####################################################################
 
 # Quantidade de folds
-qtde_folds = 4
+qtde_folds = 5
 
 # Diretório e tipo de origem
 tipo1 = 'lbp'
 frequencia = "32000"
-amplitude = "70"
+amplitude = "90"
 # Se a imagem não foi "zoneada" deixe o parâmetro como vazio = ""
 # Se foi 'zoneada', defina como: "-n", onde n é o número da zona
 zona = ''
@@ -43,7 +43,7 @@ else:
 	early = ''
 # Nome da pasta com o conteúdo a ser analisado
 #dir_origem_tipo1 += "mel_lbp_3z_1s/Spectrograms2/predicts/"
-extra_path = str(qtde_folds) + "_folds/"+frequencia+"Hz_"+amplitude+"dB/"+tipo1+"_"+escala+"_1z_1s/Left_Channel/"
+extra_path = str(qtde_folds) + "_folds/"+frequencia+"Hz_"+amplitude+"dB/"+tipo1+"_"+escala+"_1z_1s/Right_Channel/"
 dir_origem_tipo1 += extra_path
 dir_original_svm+=  extra_path
 #####################################################################
@@ -210,3 +210,5 @@ for r in range( qtde_regras ):
 	print '===================================\n'
 	print 'X dB & %.2f & %.2f & %.2f & %.2f \\\\\n' % (acuracia, recall_medio[r] * 100, precision_medio[r] * 100, fmeasure[r] * 100)
 	print '===================================\n\n'
+
+print(matriz_confusao)
